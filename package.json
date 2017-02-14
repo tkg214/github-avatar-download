@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/tkg214/github-avatar-download/issues"
   },
-  "homepage": "https://github.com/tkg214/github-avatar-download#readme"
+  "homepage": "https://github.com/tkg214/github-avatar-download#readme",
+  "dependencies": {
+    "request": "^2.79.0"
+  }
 }
