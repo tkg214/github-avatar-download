@@ -1,12 +1,12 @@
-var request = require('request');
-var GITHUB_USER = 'tkg214';
-var GITHUB_TOKEN = '8f2c2f87f0e134e4ac789cc9c3274c0375f3deb6';
-var USER_AGENT = 'GitHub Avatar Downloader';
+const request = require('request');
+const GITHUB_USER = 'tkg214';
+const GITHUB_TOKEN = '8f2c2f87f0e134e4ac789cc9c3274c0375f3deb6';
+const USER_AGENT = 'GitHub Avatar Downloader';
 
 console.log('Welcome to the GitHub Avatar Downloader!');
 
 function getRepoContributors(repoOwner, repoName, cb) {
-  var options = {
+  const options = {
     url: 'https://' + GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors',
     headers: {
     'User-Agent': USER_AGENT
@@ -18,7 +18,12 @@ function getRepoContributors(repoOwner, repoName, cb) {
 function callback(err, res, body) {
     if (err) throw err;
     console.log('Response Status Code: ', res.statusCode);
-    console.log(body);
+    const avatarList = [];
+    const data = JSON.parse(body);
+    for (var user of data) {
+      avatarList.push(user['avatar_url']);
+    }
+    console.log(avatarList);
 }
 
 getRepoContributors("jquery", "jquery", callback);
